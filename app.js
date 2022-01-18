@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const multer = require("multer");
 const port = process.env.PORT || 3000;
 
@@ -17,7 +18,7 @@ const fileStorageEngine = multer.diskStorage({
 const upload = multer({ storage: fileStorageEngine });
 
 app.get("/", (req, res, next) => {
-  res.send("hii i am here ");
+  res.sendFile(path.join(__dirname, "./views/multiple.html"));
 });
 
 app.post("/single", upload.single("image"), (req, res) => {
